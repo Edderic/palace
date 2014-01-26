@@ -26,9 +26,9 @@ html {
     }
 
     .nav {
-/*      position: fixed;
-      top:0px;
-*/      height:2em;
+      /*position: fixed;*/
+      /*top:0px;*/
+      height:2em;
       max-width:1024px;
       margin: 0 auto;
       padding: 1em 0;
@@ -39,7 +39,7 @@ html {
       font-weight: lighter;
 
       display: flex;
-      display: -webkit-box;
+      display: -webkit-flex;
       /*flex-wrap: wrap;*/
       justify-content: space-between;
       -webkit-justify-content: space-between;

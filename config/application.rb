@@ -7,9 +7,9 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 
 begin
-  path = File.expand_path('../application.yml', __FILE__)))
+  path = File.expand_path('../application.yml', __FILE__)
   if File.exists(path)
-    config = YAML.load(File.read(
+    config = YAML.load(File.read(path))
     config.merge! config.fetch(Rails.env, {})
     config.each do |key,value|
       ENV[key] = value.to_s unless value.kind_of? Hash

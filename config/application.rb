@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 begin
   path = File.expand_path('../application.yml', __FILE__)
-  if File.exists(path)
+  if File.exists?(path)
     config = YAML.load(File.read(path))
     config.merge! config.fetch(Rails.env, {})
     config.each do |key,value|

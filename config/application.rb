@@ -8,7 +8,8 @@ Bundler.require(:default, Rails.env)
 
 path = File.expand_path('../application.yml', __FILE__)
 
-if ENV['RAILS'] == 'production'|| File.exists?(path)
+puts "Environment isssss #{ENV[RAILS_ENV]}"
+if ENV['RAILS_ENV'] != 'production'|| File.exists?(path)
   config = YAML.load(File.read(path))
   config.merge! config.fetch(Rails.env, {})
   config.each do |key,value|

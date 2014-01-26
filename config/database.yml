@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: palace2_production
   pool: 5
-  username: palace2
+  username: 
   password:

@@ -36,7 +36,7 @@ html {
       font-weight: lighter;
 
       display: flex;
-      display: box;
+      display: -webkit-box;
       /*flex-wrap: wrap;*/
       justify-content: space-between;
       -webkit-justify-content: space-between;

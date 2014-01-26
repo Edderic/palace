@@ -7,10 +7,13 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 
 begin
-  config = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
-  config.merge! config.fetch(Rails.env, {})
-  config.each do |key,value|
-    ENV[key] = value.to_s unless value.kind_of? Hash
+  path = File.expand_path('../application.yml', __FILE__)))
+  if File.exists(path)
+    config = YAML.load(File.read(
+    config.merge! config.fetch(Rails.env, {})
+    config.each do |key,value|
+      ENV[key] = value.to_s unless value.kind_of? Hash
+    end
   end
 rescue Errno::ENOENT
   puts "Make sure to set environmental vars. in heroku!"

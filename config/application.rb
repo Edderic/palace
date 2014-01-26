@@ -6,16 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-path = File.expand_path('../application.yml', __FILE__)
 
-puts "Environment isssss #{ENV[RAILS_ENV]}"
-if ENV['RAILS_ENV'] != 'production'|| File.exists?(path)
-  config = YAML.load(File.read(path))
-  config.merge! config.fetch(Rails.env, {})
-  config.each do |key,value|
-    ENV[key] = value.to_s unless value.kind_of? Hash
-  end
-end
 
 module Palace2
   class Application < Rails::Application

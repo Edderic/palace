@@ -1,4 +1,12 @@
 Palace2::Application.configure do
+
+  config = YAML.load(File.read(path))
+  config.merge! config.fetch(Rails.env, {})
+  config.each do |key,value|
+    ENV[key] = value.to_s unless value.kind_of? Hash
+    %x{heroku config:set #{key}:"#{value}"}
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

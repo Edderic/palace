@@ -40,7 +40,6 @@ html {
 
       display: flex;
       display: -webkit-flex;
-      /*flex-wrap: wrap;*/
       justify-content: space-between;
       -webkit-justify-content: space-between;
       
@@ -53,11 +52,23 @@ html {
 
       h3 {
         margin: 0 0.5em;
+        display:inline-block;
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
       h2.title {
-        /*margin-left: 0.6em;*/
-        position:relative;/*
-        left:48%;*/
+        @media screen and (max-width:550px) {
+          margin-left:20px;
+        }
+
+      }
+
+      .button {
+        margin-right:10px;
+        @media screen and (min-width: 550px) {
+          display: none;
+        }
       }
     }
 

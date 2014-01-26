@@ -1,6 +1,14 @@
 {
   "RSpec": {
     "coverage": {
+      "/home/r3v3147i0n/Developer/palace2/app/models/user.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
       "/home/r3v3147i0n/Developer/palace2/app/helpers/application_helper.rb": [
         1,
         null
@@ -23,6 +31,6 @@
         null
       ]
     },
-    "timestamp": 1390760536
+    "timestamp": 1390762764
   }
 }

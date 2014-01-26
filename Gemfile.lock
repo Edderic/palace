@@ -360,7 +360,7 @@ DEPENDENCIES
   poltergeist
   pry-rails
   rails (~> 4.0.2)
-  rails_12factor (= 0.0.2)
+  rails_12factor
   rb-fchange
   rb-fsevent
   rb-inotify

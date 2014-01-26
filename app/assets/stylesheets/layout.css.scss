@@ -1,5 +1,5 @@
-$btn-dark: #2C40B5; 
-$btn-light: #5072A9;
+$btn-dark: #2C409F; 
+$btn-light: #5072A2;
 
 @font-face {
     font-family: 'LeagueScriptNumberOne';
@@ -20,10 +20,14 @@ html {
 
   body {
     font-family: 'LeagueScriptNumberOne';
+    height:100%;
     width:100%;
     margin: 0 auto;
     background-color: gray;
     max-width:1024px;
+    /*display: flex;*/
+    /*display: -webkit-flex;*/
+
     @media screen and (max-width: 1024px) {
       width: 100%;
     }
@@ -69,7 +73,7 @@ html {
 
       .button {
         margin-right:10px;
-        border: 1px solid black;
+        /*border: 1px solid black;*/
         padding: 10px 20px;
         border-radius: 7.5%;
         background: linear-gradient(0deg,  
@@ -89,6 +93,16 @@ html {
 
     .alert {
       width: 100%;
+    }
+    .game-area{
+      height:100%;
+      display:flex;
+      display:-webkit-flex;
+
+      .start {
+        margin: 0 auto;
+        align-self:center;
+      }
     }
   }
 }

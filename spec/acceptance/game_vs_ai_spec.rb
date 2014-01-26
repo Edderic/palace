@@ -8,4 +8,5 @@ describe 'visit home' do
   it { expect(page).to have_content 'palace' }   
   it { expect(page).to have_content 'login' }   
   it { expect(page).to have_content 'about' }   
+  it { expect(page).to have_content 'Start' }   
 end 

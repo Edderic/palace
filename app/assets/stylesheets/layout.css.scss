@@ -26,7 +26,10 @@ html {
     }
 
     .nav {
-      height:2em;
+/*      position: fixed;
+      top:0px;
+*/      height:2em;
+      max-width:1024px;
       margin: 0 auto;
       padding: 1em 0;
       background: linear-gradient(0deg,  

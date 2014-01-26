@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Palace2::Application.config.secret_key_base = '2c69059923c6b62da30eb78e880b5a2389392c1ac253cf22e5c45c76d7cc51da8e06df197ef5de53db91afcf7e70491ff8c85181282028aa6b7631e6b3793f7d'
+Palace2::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']

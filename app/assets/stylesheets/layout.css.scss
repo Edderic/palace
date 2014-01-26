@@ -1,6 +1,9 @@
 $btn-dark: #2C409F; 
 $btn-light: #5072A2;
 
+$btn-start-start: #FEBB02;
+$btn-start-end: #FEBB02;
+
 @font-face {
     font-family: 'LeagueScriptNumberOne';
     src: font-url('LeagueScriptNumberOne-webfont.eot');
@@ -101,7 +104,12 @@ html {
 
       .start {
         margin: 0 auto;
+        -webkit-align-self:center;
         align-self:center;
+        border-radius:5%;
+        padding: 1em;
+        padding-bottom:0.5em;
+        background-color:$btn-start-start;
       }
     }
   }

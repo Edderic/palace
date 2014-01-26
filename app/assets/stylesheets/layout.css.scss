@@ -1,3 +1,6 @@
+$btn-dark: #2C40B5; 
+$btn-light: #5072A9;
+
 @font-face {
     font-family: 'LeagueScriptNumberOne';
     src: font-url('LeagueScriptNumberOne-webfont.eot');
@@ -66,6 +69,12 @@ html {
 
       .button {
         margin-right:10px;
+        border: 1px solid black;
+        padding: 5px 8px;
+        border-radius: 7.5%;
+        background: linear-gradient(0deg,  
+          $btn-dark, 
+          $btn-light);
         @media screen and (min-width: 550px) {
           display: none;
         }

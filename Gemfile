@@ -13,8 +13,7 @@ gem 'em-websocket'
 gem 'pg'
 gem 'jquery-ui-rails'
 gem 'therubyracer'
-# gem 'rb-readline', '0.4.2'
-
+gem "rb-readline", "~> 0.5.0"
 
 group :development do
   gem 'pry-rails'
@@ -34,6 +33,8 @@ group :development, :test do
   gem "jasminerice", :git => 'https://github.com/bradphelan/jasminerice.git'
   gem 'debugger'
   gem 'spring'
+  gem 'metric_fu'
+  gem "spring-commands-rspec"
 end
 
 group :test do
@@ -45,6 +46,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
 
 group :production do 

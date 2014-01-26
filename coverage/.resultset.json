@@ -1,0 +1,28 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/r3v3147i0n/Developer/palace2/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/r3v3147i0n/Developer/palace2/app/helpers/pages_helper.rb": [
+        1,
+        null
+      ],
+      "/home/r3v3147i0n/Developer/palace2/app/controllers/pages_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/r3v3147i0n/Developer/palace2/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1390716028
+  }
+}

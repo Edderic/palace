@@ -39,7 +39,10 @@ html {
       display: box;
       /*flex-wrap: wrap;*/
       justify-content: space-between;
+      -webkit-justify-content: space-between;
+      
       align-items:center;
+      -webkit-align-items:center;
 
       @media screen and (max-width: 1024px) {
         width:100%;

@@ -2,7 +2,7 @@ $btn-dark: #2C409F;
 $btn-light: #5072A2;
 
 $btn-start-start: #FEBB02;
-$btn-start-end: #FEBB02;
+$btn-start-end: #FE9D02;
 
 @font-face {
     font-family: 'LeagueScriptNumberOne';
@@ -109,8 +109,30 @@ html {
         border-radius:5%;
         padding: 1em;
         padding-bottom:0.5em;
-        background-color:$btn-start-start;
+        background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
+
+
+
+        -webkit-animation-name: slide;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-timing-function: ease;
+        -webkit-animation-iteration-count: infinite;
+
+        animation-name: slide;
+        animation-duration: 1s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+
+
       }
     }
   }
+}
+
+@-webkit-keyframes slide {
+  50% { opacity:0.3;}
+}
+
+@keyframes slide {
+  50% { opacity:0.3;}
 }

@@ -35,6 +35,10 @@ html {
       width: 100%;
     }
 
+    .notice,
+    .alert {
+      display:none;
+    }
     .nav {
       /*position: fixed;*/
       /*top:0px;*/
@@ -111,8 +115,9 @@ html {
         padding-bottom:0.5em;
         background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
 
-
-
+        a {
+          text-decoration: none;
+        }
         -webkit-animation-name: slide;
         -webkit-animation-duration: 1s;
         -webkit-animation-timing-function: ease;
@@ -130,11 +135,11 @@ html {
           /*background*/
         }
 
-        &:active {
-          display:none;
+/*        &:active {
+          display:none !important;
           -webkit-animation-iteration-count: 0;
           animation-iteration-count: 0;
-        }
+        }*/
       }
     }
   }
@@ -147,3 +152,5 @@ html {
 @keyframes slide {
   50% { opacity:0.3;}
 }
+
+

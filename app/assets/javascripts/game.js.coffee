@@ -1,34 +1,28 @@
 class @Game
   constructor: (@num_of_players)->
     @status = "STARTED"
+    @player = []
     @used_deck = []
     @new_deck = []
 
-    @player_one_last_facedown_cards = []
-    @player_one_last_faceup_cards = []
-    @player_one_hand_cards = []
-    @player_two_last_facedown_cards = []
-    @player_two_last_faceup_cards = []
-    @player_two_hand_cards = []  
+    for num in [0...@num_of_players]
+      @player[num] = new Player()
 
-    @distribute_cards()
-    @constructor.initialize_html()
+    @distribute_cards(@player)
+    @initialize_html()
 
-  distribute_cards: ->
+  distribute_cards: (@player) ->
     new_deck = Card.new_deck()
 
-    for i in [0..2]
-      @player_one_last_facedown_cards.push(new_deck.pop())
-      @player_one_last_faceup_cards.push(new_deck.pop())
-      @player_one_hand_cards.push(new_deck.pop())
+    for idx in [0...@player.length]
+      for i in [0..2]
+        @player[idx].last_facedown_cards.push(new_deck.pop())
+        @player[idx].last_faceup_cards.push(new_deck.pop())
+        @player[idx].hand_cards.push(new_deck.pop())
 
-      @player_two_last_facedown_cards.push(new_deck.pop())
-      @player_two_last_faceup_cards.push(new_deck.pop())
-      @player_two_hand_cards.push(new_deck.pop())
+    @new_deck = new_deck
 
-      @new_deck = new_deck
-      
-  @initialize_html: ->  
+  initialize_html: ->  
     $('.game-area').append(Game.html_player_one_last_face_down)
     $('.game-area').append(Game.html_player_one_last_face_up)
     $('.game-area').append(Game.html_player_one_hand)

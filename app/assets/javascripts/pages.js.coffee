@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
  
 $ ->  
-  $(".start").click ->
+  $(".start").click (e) ->
+    e.preventDefault()
     game = new Game()
 
     $(this).hide()

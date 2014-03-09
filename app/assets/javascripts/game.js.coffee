@@ -1,54 +1,64 @@
+### 
+  Separate Model, View, and Controller-related code.
+  Encapsulate classes to simulate private methods and
+  keep public stuff public.
+###
+
 class @Game
   constructor: (@num_of_players)->
     @status = "STARTED"
     @player = []
     @used_deck = []
-    @new_deck = []
+    @new_deck = Card.new_deck()
 
-    for num in [0...@num_of_players]
-      @player[num] = new Player()
+    for idx in [0...@num_of_players]
+      @player.push(new Player())
 
-    @distribute_cards(@player)
-    @initialize_html()
+      @distribute_cards(idx)
+      @initialize_html_player(idx)
 
-  distribute_cards: (@player) ->
-    new_deck = Card.new_deck()
+    @init_html_common()
 
-    for idx in [0...@player.length]
-      for i in [0..2]
-        @player[idx].last_facedown_cards.push(new_deck.pop())
-        @player[idx].last_faceup_cards.push(new_deck.pop())
-        @player[idx].hand_cards.push(new_deck.pop())
+  distribute_cards: (idx) ->
 
-    @new_deck = new_deck
+    for card_idx in [0..2]
+      @player[idx].last_facedown_cards.push(@new_deck.pop())
+      @player[idx].last_faceup_cards.push(@new_deck.pop())
+      @player[idx].hand_cards.push(@new_deck.pop())
+  
 
-  initialize_html: ->  
-    $('.game-area').append(Game.html_player_one_last_face_down)
-    $('.game-area').append(Game.html_player_one_last_face_up)
-    $('.game-area').append(Game.html_player_one_hand)
-    $('.game-area').append(Game.html_used_deck)
-    $('.game-area').append(Game.html_new_deck)
-    $('.game-area').append(Game.html_player_two_last_face_down)
-    $('.game-area').append(Game.html_player_two_last_face_up)
-    $('.game-area').append(Game.html_player_two_hand)
+  initialize_html_player: (idx) ->  
+    name = switch
+      when idx is 0 then 'one'
+      when idx is 1 then 'two'
+      else NaN
 
-  @html_player_one_last_face_down:
-    '<div class="player_one last face_down"></div>'
+    # alert Game.html_last_face_down_player(name)
+    $('.game-area').append(Game.html_last_face_down_player(name))
+    $('.game-area').append(Game.html_last_face_up_player(name))
+    $('.game-area').append(Game.html_hand_player(name))
 
-  @html_player_one_last_face_up: 
-    '<div class="player_one last face_up"></div>'
+    for card_idx in [0..2]
+      card = @player[idx].last_faceup_cards[card_idx]
+      faceup = "<div class='card' suit=\"#{card.suit}\" num=\"#{card.num}\"></div>"
+      $(".player_#{name}.last.face_up").append faceup
+      
+      facedown = "<div class='card' suit=\"?\" num=\"?\"></div>"
+      $(".player_#{name}.last.face_down").append facedown
+  
 
-  @html_player_one_hand:
-    '<div class="player_one hand face_up_for_player_one face_down_for_player_two"></div>'
+  init_html_common: ->
+    $('.game-area').append Game.html_used_deck
+    $('.game-area').append Game.html_new_deck
 
-  @html_player_two_last_face_down:
-    '<div class="player_two last face_down"></div>'
+  @html_last_face_down_player: (num_name) ->
+    "<div class=\"player_#{num_name} last face_down\"></div>"
 
-  @html_player_two_last_face_up:
-    '<div class="player_two last face_up"></div>' 
+  @html_last_face_up_player: (num_name) -> 
+    "<div class=\"player_#{num_name} last face_up\"></div>"
 
-  @html_player_two_hand:
-    '<div class="player_two hand face_up_for_player_two face_down_for_player_one"></div>' 
+  @html_hand_player: (num_name) ->
+    "<div class=\"player_#{num_name} hand face_up_for_player_one face_down_for_player_two\"></div>"
 
   @html_used_deck:
     '<div class="used face_up"></div>'

@@ -21,7 +21,9 @@ class @GameView
         card = game.player[player_idx].last_faceup_cards[card_idx]
         @init_last_faceup(name, card)
         @init_last_facedown(name,card)
-        @init_hand_deck(name, who_am_i)
+
+        card_fu = game.player[player_idx].hand_cards[card_idx]
+        @init_hand_deck(name, who_am_i, card_fu)
         
 
   @init_html_common: ->
@@ -29,24 +31,36 @@ class @GameView
     $('.game-area').append GameView.html_new_deck
 
   @init_last_faceup: (name, card) ->
-    last_faceup = "<div class='card' suit=\"#{card.suit}\" num=\"#{card.num}\"></div>"
+    last_faceup = "<div class='card face_up' suit=\"#{card.suit}\" num=\"#{card.num}\"></div>"
     $(".player_#{name}.last.face_up").append last_faceup
 
   @init_last_facedown: (name, card) ->
-    last_facedown = "<div class='card' suit=\"?\" num=\"?\"></div>"
+    last_facedown = "<div class='card face_down' suit=\"?\" num=\"?\"></div>"
     $(".player_#{name}.last.face_down").append last_facedown
 
-  @init_hand_deck: (name, who_am_i) ->
+  @init_hand_deck: (name, who_am_i, card) ->
+
+    if !name or !who_am_i or !card
+      throw "#{this}: name: #{name}, who_am_i: #{who_am_i}, card: #{card}"
+
+    card_details = ''
+    facing = ''
+
     if who_am_i is Player.ONE and name is "one"
       facing = "face_up"
+      card_details = " suit='#{card.suit}' num='#{card.num}'"
     else if who_am_i is Player.TWO and name is "one"
       facing = "face_down"
+      card_details = " suit='?' num='?'"
     else if who_am_i is Player.ONE and name is "two"
       facing = "face_down"
+      card_details = " suit='?' num='?'"
     else if who_am_i is Player.TWO and name is "two"
       facing = "face_up"
+      card_details = " suit='#{card.suit}' 'num=#{card.num}'"
 
-    $(".player_#{name}.hand.deck").append "<div class=\"card #{facing}\"></div>"
+
+    $(".player_#{name}.hand.deck").append "<div#{card_details} class=\"card #{facing}\"></div>"
 
   @html_last_face_down_player: (num_name) ->
     "<div class=\"player_#{num_name} last face_down deck\"></div>"

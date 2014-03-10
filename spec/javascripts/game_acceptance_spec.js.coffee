@@ -48,8 +48,14 @@ describe 'GameAcceptance', ->
       it 'should make player two hand cards to be face down', ->
         expect($('.player_two.hand.deck').children('.face_down').length).toBe 3
 
-      it 'should make player one hand cards to be face down', ->
+      it 'should make player one hand cards to be face up', ->
         expect($('.player_one.hand.deck').children('.face_up').length).toBe 3
+
+      # describe 'the hand cards of player one', ->
+      it 'should have num and suit attributes', ->
+        $.each $('.player_one.hand.deck').children('.face_up'), (i,v) ->
+          expect($(v).attr('suit')).not.toBeFalsy()
+
 
   describe 'creating a new game with two players, you being PLAYER_TWO', ->
     beforeEach ->
@@ -104,7 +110,7 @@ describe 'GameAcceptance', ->
 
   describe 'creating a new game with three players', ->
     beforeEach ->
-      @gc = new GameController(3)
+      @gc = new GameController(3, Player.ONE)
 
     it 'should, for now, only create 2 players', ->
       expect(@gc.game.player.length).toBe 2

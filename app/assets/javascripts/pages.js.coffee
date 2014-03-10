@@ -5,6 +5,6 @@
 $ ->  
   $(".start").click (e) ->
     e.preventDefault()
-    gc = new GameController(2, Player.PLAYER_ONE)
+    gc = new GameController(2, Player.ONE)
 
     $(this).hide()

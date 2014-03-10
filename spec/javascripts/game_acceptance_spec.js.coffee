@@ -25,22 +25,22 @@ describe 'GameAcceptance', ->
         expect($('.new').length).toBe 1
 
       it 'should create three player one last facedown cards', ->
-        expect($('.player_one.last.face_down.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.last.face_down.deck').children('.card').length).toBe 3
 
       it 'should create three player one last faceup cards', ->
-        expect($('.player_one.last.face_up.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.last.face_up.deck').children('.card').length).toBe 3
 
       it 'should create three player one hand cards', ->
-        expect($('.player_one.hand.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.hand.deck').children('.card').length).toBe 3
 
       it 'should create three player two last facedown cards', ->
-        expect($('.player_two.last.face_down.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.last.face_down.deck').children('.card').length).toBe 3
 
       it 'should create three player two last faceup cards', ->
-        expect($('.player_two.last.face_up.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.last.face_up.deck').children('.card').length).toBe 3
 
       it 'should create three player two hand cards', ->
-        expect($('.player_two.hand.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.hand.deck').children('.card').length).toBe 3
 
       it 'should make user be player1 or player2', ->
         expect(@gc.who_am_i).toBePlayerOne()
@@ -69,22 +69,22 @@ describe 'GameAcceptance', ->
         expect($('.new').length).toBe 1
 
       it 'should create three player one last facedown cards', ->
-        expect($('.player_one.last.face_down.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.last.face_down.deck').children('.card').length).toBe 3
 
       it 'should create three player one last faceup cards', ->
-        expect($('.player_one.last.face_up.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.last.face_up.deck').children('.card').length).toBe 3
 
       it 'should create three player one hand cards', ->
-        expect($('.player_one.hand.deck').children('.card').length).toBe 3
+        expect($('.player_one.area .player_one.hand.deck').children('.card').length).toBe 3
 
       it 'should create three player two last facedown cards', ->
-        expect($('.player_two.last.face_down.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.last.face_down.deck').children('.card').length).toBe 3
 
       it 'should create three player two last faceup cards', ->
-        expect($('.player_two.last.face_up.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.last.face_up.deck').children('.card').length).toBe 3
 
       it 'should create three player two hand cards', ->
-        expect($('.player_two.hand.deck').children('.card').length).toBe 3
+        expect($('.player_two.area .player_two.hand.deck').children('.card').length).toBe 3
 
       it 'should make user be player1 or player2', ->
         expect(@gc.who_am_i).toBePlayerTwo()

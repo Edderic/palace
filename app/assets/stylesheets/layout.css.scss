@@ -98,8 +98,8 @@ html {
       width:100%;
     }
 
-    .alert {
-      width: 100%;
+    .alert 
+{      width: 100%;
     }
     .game-area{
       height:100%;
@@ -154,3 +154,10 @@ html {
 }
 
 
+
+.card {
+  border: 1px solid black;
+  background-color: #FFF;
+  height: 100px;
+  width: 50px;
+}

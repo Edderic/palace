@@ -8,14 +8,14 @@ class @GameView
     idx = game.player.length
     for player_idx in [0...game.player.length]
 
-      name = switch
-        when player_idx is 0 then 'one'
-        when player_idx is 1 then 'two'
-        else NaN
+      name = @name_from_idx(player_idx)
+      
+      
+      $('.game-area').append "<section class=\"player_#{name} area\"></section>"
 
-      $('.game-area').append(GameView.html_last_face_down_player(name))
-      $('.game-area').append(GameView.html_last_face_up_player(name))
-      $('.game-area').append(GameView.html_hand_player(name))
+      $(".game-area .player_#{name}.area").append(GameView.html_last_face_down_player(name))
+      $(".game-area .player_#{name}.area").append(GameView.html_last_face_up_player(name))
+      $(".game-area .player_#{name}.area").append(GameView.html_hand_player(name))
 
       for card_idx in [0..2]
         card = game.player[player_idx].last_faceup_cards[card_idx]
@@ -24,7 +24,15 @@ class @GameView
 
         card_fu = game.player[player_idx].hand_cards[card_idx]
         @init_hand_deck(name, who_am_i, card_fu)
+   
+
+  # private stuff
         
+  @name_from_idx: (player_idx) ->
+    name = switch
+      when player_idx is 0 then 'one'
+      when player_idx is 1 then 'two'
+      else NaN
 
   @init_html_common: ->
     $('.game-area').append GameView.html_used_deck

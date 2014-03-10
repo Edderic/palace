@@ -1,4 +1,7 @@
-describe 'GameBehavior', ->
+###
+###
+
+describe 'GameModel', ->
   beforeEach ->
     loadFixtures 'game'
 
@@ -33,14 +36,8 @@ describe 'GameBehavior', ->
     it 'should create three player two hand cards', ->
       expect(@game.player[1].hand_cards.length).toBe 3
 
+
     
-
-    # xit 'should create three cards i'
-
-    #xit 'should have initialized the html', ->
-    #   expect($.contains(document.))
-
-
     #describe 'Whose turn is it?', ->
     #  beforeEach ->
     #    @game.whose_turn

@@ -1,0 +1,17 @@
+<section id='player_1'>
+  <div class='last face_down deck'></div>
+  <div class='last face_up deck'></div>
+  <div class='hand deck'></div>
+</section>
+
+<section id='neutral'>
+  <div id='status'></div>
+  <div class='used face_up deck'></div>
+  <div class='new face_down deck'></div>
+</section>
+
+<section id='player_2'>
+  <div class='hand deck'></div>
+  <div class='last face_up deck'></div>
+  <div class='last face_down deck'></div>
+</section>

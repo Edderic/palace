@@ -1,30 +1,41 @@
 require 'spec_helper'
 
-describe 'visit home' do
+describe 'visit home', :js do
   subject { page }
 
   before { visit root_path }
 
-  it { expect(page).to have_content 'palace' }   
-  it { expect(page).to have_content 'login' }   
-  it { expect(page).to have_content 'about' }   
-  it { expect(page).to have_content 'Start' }
+  it 'should have the right nav bar content' do
+    expect(page).to have_content 'palace'    
+    expect(page).to have_content 'login'    
+    expect(page).to have_content 'about'    
+    expect(page).to have_content 'Start'
+  end
 
   context 'click_on start', :js do
     before { click_on 'Start' }
-    it { expect(page).not_to have_content 'Start' }
-    it { expect(page).to have_css '.player_one.last.face_down' }
-    it { expect(page).to have_css '.player_one.last.face_up' }
-    it { expect(page).to have_css '.player_one.hand.face_up_for_player_one.face_down_for_player_two' }
 
-    it { expect(page).to have_css '.used.face_up' }
-    it { expect(page).to have_css '.new.face_down' }
+    it 'should have the right decks and amount of cards' do
+      expect(page).not_to have_content 'Start'
 
-    it { expect(page).to have_css '.player_two.last.face_down' }
-    it { expect(page).to have_css '.player_two.last.face_up' }
-    it { expect(page).to have_css '.player_two.hand.face_up_for_player_two.face_down_for_player_one' }
-    
-    it { expect(page).to have_css '.player_two.face_up' }
-    it { expect(page).to have_css '.player_two.face_up' }
+      should_have_player_decktype_count(1, '.last.face_down', 3)
+      should_have_player_decktype_count(1, '.last.face_up', 3)
+      should_have_player_decktype_count(1, '.hand', 3)
+      should_have_player_decktype_count(2, '.last.face_down', 3)
+      should_have_player_decktype_count(2, '.last.face_up', 3)
+      should_have_player_decktype_count(2, '.hand', 3)
+
+      should_have_decktype_count('.new.face_down', 34)
+      should_have_decktype_count('.used.face_up', 0)
+    end
   end  
 end
+
+def should_have_decktype_count(type, count)
+  expect(page.all("#neutral #{type}.deck .card").count).to eq count
+end
+
+def should_have_player_decktype_count(index, type, count)
+  expect(page.all("#player_#{index} #{type}.deck .card").count).to eq count
+end
+

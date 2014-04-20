@@ -3,8 +3,8 @@
 <head>
   <title>Palace2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,8 +14,8 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-
-<%= yield %>
-
+<div id='container'>
+  <%= yield %>
+</div>
 </body>
 </html>

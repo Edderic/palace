@@ -1,8 +1,21 @@
+@function calc_width($height) {
+  @return $height * 2.5/3.5;
+}
+
+$card-height: 100px;
+$card-width: calc_width($card-height);
+
 $btn-dark: #2C409F; 
 $btn-light: #5072A2;
 
 $btn-start-start: #FEBB02;
 $btn-start-end: #FE9D02;
+
+$box-shadow-color: hsla(250deg, 50%, 0%, 0.075);
+$light-shade-bgr-color: hsla(231, 29%, 44%, 1.0);
+$dark-shade-bgr-color: hsla(231, 61%, 44%, 1.0);
+$face-down-color: hsla(231, 29%, 44%, 1.0);
+// $face-down-color: hsla(250deg, 50%, 50%, 1.0);
 
 @font-face {
     font-family: 'LeagueScriptNumberOne';
@@ -28,8 +41,6 @@ html {
     margin: 0 auto;
     background-color: gray;
     max-width:1024px;
-    /*display: flex;*/
-    /*display: -webkit-flex;*/
 
     @media screen and (max-width: 1024px) {
       width: 100%;
@@ -40,15 +51,15 @@ html {
       display:none;
     }
     .nav {
-      /*position: fixed;*/
+      // position: fixed;
       /*top:0px;*/
       height:2em;
       max-width:1024px;
       margin: 0 auto;
       padding: 1em 0;
       background: linear-gradient(0deg,  
-              hsla(231, 61%, 44%, 1.0), 
-              hsla(231, 29%, 44%, 1.0));
+             $dark-shade-bgr-color, 
+              $light-shade-bgr-color);
       color: hsla(312, 100%, 65%, 1.0);
       font-weight: lighter;
 
@@ -80,7 +91,6 @@ html {
 
       .button {
         margin-right:10px;
-        /*border: 1px solid black;*/
         padding: 10px 20px;
         border-radius: 7.5%;
         background: linear-gradient(0deg,  
@@ -89,8 +99,6 @@ html {
         @media screen and (min-width: 550px) {
           display: none;
         }
-
-        /*&:;*/
       }
     }
 
@@ -98,50 +106,47 @@ html {
       width:100%;
     }
 
-    .alert 
-{      width: 100%;
+    .alert {
+      width: 100%;
     }
-    .game-area{
-      height:100%;
-      display:flex;
-      display:-webkit-flex;
+  }
+}
 
-      .start {
-        margin: 0 auto;
-        -webkit-align-self:center;
-        align-self:center;
-        border-radius:5%;
-        padding: 1em;
-        padding-bottom:0.5em;
-        background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
+#container {
 
-        a {
-          text-decoration: none;
-        }
-        -webkit-animation-name: slide;
-        -webkit-animation-duration: 1s;
-        -webkit-animation-timing-function: ease;
-        -webkit-animation-iteration-count: infinite;
+  height:100%;
+  display:flex;
+  display:-webkit-flex;
 
-        animation-name: slide;
-        animation-duration: 1s;
-        animation-timing-function: ease;
-        animation-iteration-count: infinite;
+  .start {
+    margin: 0 auto;
+    -webkit-align-self:center;
+    align-self:center;
+    border-radius:5%;
+    padding: 1em;
+    padding-bottom:0.5em;
+    background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
 
-        &:hover {
-          background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
-          animation-iteration-count: 0;
-          -webkit-animation-iteration-count: 0;
-          /*background*/
-        }
-
-/*        &:active {
-          display:none !important;
-          -webkit-animation-iteration-count: 0;
-          animation-iteration-count: 0;
-        }*/
-      }
+    a {
+      text-decoration: none;
     }
+    -webkit-animation-name: slide;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-iteration-count: infinite;
+
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+
+    &:hover {
+      background: linear-gradient(180deg, $btn-start-start, $btn-start-end);
+      animation-iteration-count: 0;
+      -webkit-animation-iteration-count: 0;
+    }
+
+    box-shadow: 0px 5px 10px 5px $box-shadow-color;
   }
 }
 
@@ -153,11 +158,125 @@ html {
   50% { opacity:0.3;}
 }
 
+@mixin deck ($color: black) {
+  border: 1px solid $color;
+  height: 100px;
+  width: 400px;
+  margin: auto auto;
+  justify-content: center;
+  align-content: center;  
+  display: flex;
+
+  .card {
+    justify-content: space-around;
+    align-content: center;
+    margin: 0 auto;
+  }
+}
+#player_1 {
+  height:33.33%;
+
+  .last.face_down.deck {
+    @include deck(black);
+    position: relative;
+    top: 10px;
+    z-index: 1;
+  }
+
+  .last.face_up.deck {
+    @include deck(red);
+    position: relative;
+    top: -80px;
+    left: 10px;
+    z-index: 2;
+  }
+
+  .hand.deck {
+    @include deck(green);
+    width: 90%;
+  }
+}
+
+#neutral {
+  height:33.33%;
+  margin: 0 auto;
+  display: flex;
+
+  #status {
+    @include deck(red);
+  }
+
+  .used {
+    @include deck(blue); 
+  }
+
+  .new {
+    @include deck(orange);
+
+    .card {
+      position: absolute;
+    }
+  }
+}
+
+#player_2 {
+  height:33.33%;
+
+  .last.face_down.deck {
+    @include deck(black);
+    position: relative;
+    bottom: 10px;
+    z-index: 1;
+  }
+
+  .last.face_up.deck {
+    @include deck(red);
+    position: relative;
+    bottom: -80px;
+    left: 10px;
+    z-index: 2;
+  }
+
+  .hand.deck {
+    @include deck(green);
+    width: 90%;
+  }
+}
 
 
 .card {
   border: 1px solid black;
+  border-radius: 6px;
   background-color: #FFF;
-  height: 100px;
-  width: 50px;
+  height: $card-height;
+  width: $card-width;
+  display: block;
+  box-shadow: 0 0 5px 5px $box-shadow-color;
+
+  &[orientation='face-down'] {
+    background: linear-gradient(0deg,  
+                  $dark-shade-bgr-color, 
+                  $light-shade-bgr-color);
+    &::before {
+      content: '?';
+      color: $btn-start-start;
+      font-size: 50px;
+      font-weight: bold;
+      position: relative;
+      top: 35px;
+      left: 14px;
+    }
+
+    &::after {
+      // content: &[orientation];
+    }
+  }
+
+  .num {
+
+  }
+
+  .suit {
+
+  }
 }

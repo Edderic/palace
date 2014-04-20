@@ -16,6 +16,8 @@ gem 'pg'
 gem 'jquery-ui-rails'
 gem 'therubyracer'
 gem "rb-readline", "~> 0.5.0"
+gem 'backbone-on-rails'
+
 
 group :development do
   gem 'pry-rails'
@@ -23,6 +25,11 @@ end
 
 group :development, :test do 
   gem 'rspec-rails' # for testing.
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'sinon-rails'
+  gem 'jasmine-sinon-rails'
+
   # gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false 
@@ -37,6 +44,7 @@ group :development, :test do
   gem 'spring'
   gem 'metric_fu'
   gem "spring-commands-rspec"
+  gem 'capybara-screenshot'
 end
 
 group :test do

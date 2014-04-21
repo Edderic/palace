@@ -21,35 +21,16 @@
 
 class Palace2.Models.Game extends Backbone.Model
   initialize: (args) ->
-    if !args
-      throw 'No arguments passed in'
-    # if !args.hasOwnProperty('used_deck')
-    #   throw ', Used Deck has not been sent to game'
-    if typeof args.used_deck.push isnt 'function' or typeof args.used_deck.pop isnt 'function'
-      do throw 'used_deck doesn\'t respond to \'push\' or to \'pop\''
-    if typeof args.new_deck.push isnt 'function' or typeof args.new_deck.pop isnt 'function'
-      do throw 'new_deck doesn\'t respond to \'push\' or to \'pop\''
-    if typeof args.players.push isnt 'function' or typeof args.players.pop isnt 'function'
-      do throw 'players doesn\'t respond to \'push\' or to \'pop\''
+    
+    check_preconditions_if_true args
 
     @used_deck = args.used_deck
     @new_deck = args.new_deck
     @players = args.players
 
     add_starting_card_to_used_deck(@used_deck, @new_deck)
-
-    @players.each (player) =>
-      hand_cards = player.get 'hand_cards'
-      last_facedown_cards = player.get 'last_facedown_cards'
-      last_faceup_cards = player.get 'last_faceup_cards'
-      
-      _(3).times (n) =>
-        hand_cards.add @new_deck.pop()
-        last_facedown_cards.add @new_deck.pop()
-        last_faceup_cards.add @new_deck.pop()
-     # = @players.models[0]
-    # pop the new deck and put that card to the used deck
-
+    distribute_cards_to_players(@players, @new_deck)
+    
   num_players: ->
     @players.size()
 
@@ -69,3 +50,24 @@ class Palace2.Models.Game extends Backbone.Model
 
   add_starting_card_to_used_deck = (used_deck, new_deck) ->
     used_deck.push new_deck.pop()
+
+  distribute_cards_to_players = (players, new_deck) ->
+    players.each (player) =>
+      hand_cards = player.get 'hand_cards'
+      last_facedown_cards = player.get 'last_facedown_cards'
+      last_faceup_cards = player.get 'last_faceup_cards'
+      
+      _(3).times (n) =>
+        hand_cards.add new_deck.pop()
+        last_facedown_cards.add new_deck.pop()
+        last_faceup_cards.add new_deck.pop()
+
+  check_preconditions_if_true = (args) ->
+    if !args
+      throw 'No arguments passed in'
+    if typeof args.used_deck.push isnt 'function' or typeof args.used_deck.pop isnt 'function'
+      do throw 'used_deck doesn\'t respond to \'push\' or to \'pop\''
+    if typeof args.new_deck.push isnt 'function' or typeof args.new_deck.pop isnt 'function'
+      do throw 'new_deck doesn\'t respond to \'push\' or to \'pop\''
+    if typeof args.players.push isnt 'function' or typeof args.players.pop isnt 'function'
+      do throw 'players doesn\'t respond to \'push\' or to \'pop\''

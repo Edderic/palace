@@ -36,7 +36,18 @@ class Palace2.Models.Game extends Backbone.Model
     @new_deck = args.new_deck
     @players = args.players
 
-    @used_deck.push(@new_deck.pop())
+    add_starting_card_to_used_deck(@used_deck, @new_deck)
+
+    @players.each (player) =>
+      hand_cards = player.get 'hand_cards'
+      last_facedown_cards = player.get 'last_facedown_cards'
+      last_faceup_cards = player.get 'last_faceup_cards'
+      
+      _(3).times (n) =>
+        hand_cards.add @new_deck.pop()
+        last_facedown_cards.add @new_deck.pop()
+        last_faceup_cards.add @new_deck.pop()
+     # = @players.models[0]
     # pop the new deck and put that card to the used deck
 
   num_players: ->
@@ -52,5 +63,9 @@ class Palace2.Models.Game extends Backbone.Model
     'NONE'
 
   used_deck_top: ->
-    new Backbone.Model({'suit': 'HEARTS', 'num': '3'})
-    # @used_deck.last()
+    @used_deck.last()
+
+  # private
+
+  add_starting_card_to_used_deck = (used_deck, new_deck) ->
+    used_deck.push new_deck.pop()

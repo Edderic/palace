@@ -28,8 +28,8 @@ class Palace2.Models.Game extends Backbone.Model
     @new_deck = args.new_deck
     @players = args.players
 
-    add_starting_card_to_used_deck(@used_deck, @new_deck)
-    distribute_cards_to_players(@players, @new_deck)
+    add_starting_card_to_used_deck @used_deck, @new_deck
+    distribute_cards_to_players @players, @new_deck
     
   num_players: ->
     @players.size()

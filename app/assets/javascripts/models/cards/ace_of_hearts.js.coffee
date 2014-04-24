@@ -1,0 +1,1 @@
+class App.Models.AceOfHearts extends Backbone.Model
